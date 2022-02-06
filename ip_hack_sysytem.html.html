@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Location</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    html,
+    body,
+    .main {
+        min-height: 100% !important;
+        height: 100%;
+    }
+    
+    body {
+        background-color: #000;
+    }
+    
+    #table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 90%;
+        font-size: 13px;
+        color: lime;
+        margin: auto;
+        display: none;
+        border-style: dotted;
+        padding: 10px;
+    }
+    
+    #table th {
+        text-align: left;
+    }
+    
+    #table td:nth-child(odd) {
+        font-weight: 1000;
+    }
+    
+    #table td:nth-child(even) {
+        font-weight: 500;
+    }
+    
+    #main {
+        height: 100%;
+        width: 100%;
+        background-color: #000;
+        overflow-y: scroll;
+        color: lime;
+        font-size: 10px;
+        padding: 10px 0 0 10px;
+    }
+    
+    #animation {
+        display: none;
+    }
+    
+    pre {
+        color: red;
+        font-size: 13px;
+        margin-left: 20px;
+    }
+    
+    #code {
+        display: none;
+    }
+    
+    #line2 {
+        display: none;
+    }
+    
+    #code2 {
+        display: none;
+    }
+    
+    .red {
+        color: red;
+    }
+    
+    .blue {
+        color: dodgerblue;
+    }
+    
+    .white {
+        color: white;
+    }
+    
+    .progress,
+    .progress1 {
+        background: rgba(255, 255, 255, 0.1);
+        justify-content: flex-start;
+        border-radius: 30px;
+        align-items: center;
+        position: relative;
+        padding: 0 5px;
+        display: none;
+        height: 40px;
+        width: 100%;
+    }
+    
+    #progress {
+        display: none;
+    }
+    
+    .progress-value {
+        animation: load 3s normal forwards;
+        transition-delay: 3s;
+        box-shadow: 0 10px 40px -10px lime;
+        border-radius: 100px;
+        background: lime;
+        height: 30px;
+        width: 0;
+    }
+    
+    @keyframes load {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+    
+    .swal-overlay {
+        background-color: rgba(43, 165, 137, 0.45);
+    }
+    
+    .swal-modal {
+        background-color: #343434;
+    }
+    
+    .swal-button {
+        padding: 7px 19px;
+        border-radius: 2px;
+        font-size: 12px;
+        border: 1px solid #3e549a;
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<boby>
+    <audio id="myAudio" autoplay>
+  <source src="https://dl.dropbox.com/s/91ugpc7kvahpslj/fast-pace-typing-on-mechanical-keyboard-1-www.fesliyanstudios.com.mp3" type="audio/mp3">
+  <source src="https://dl.dropbox.com/s/91ugpc7kvahpslj/fast-pace-typing-on-mechanical-keyboard-1-www.fesliyanstudios.com.ogg" type="audio/mpeg">
+</audio>
+    <pre>
+           
+███████████████████████████████████
+█─█─██▀▄─██─▄▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█      
+█─▄─██─▀─██─███▀██─▄▀███─▄█▀██─▄─▄    
+▀▄▀▄▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀
+       </pre>
+    <table id="table"></table>
+    <canvas id="animation"></canvas>
+    <div id="main">
+        UserId : noah@compwizard<br> Password : *************<br><br>
+        <p id="line1">
+            <font class="red">hacker@noah:</font>
+            <font class="blue">~HACCKER NOAH</font>
+            <font class="white">$</font>
+        </p>
+        <br>
+        <p id="code">
+            #include
+            <conio.h><br> #include
+                <stdlib.h><br> void main()<br> {
+                    <br> clrscr();
+                    <br> system("C:\\Windows\\System32\\ipconfig");
+                    <br> getch();
+                    <br> } <br>
+                    <div class="progress">
+                        <div class="progress-value"></div>
+                    </div>
+                    <p id="line2">
+                        <font class="red">khacker@noah:</font>
+                        <font class="blue">~</font>
+                        <font class="white">$</font> nmap -sV
+                        <font id="nmap"></font>
+                    </p>
+                    <p id="code2">
+                        Starting Nmap 7.80 ( https://nmap.org ) UTC Nmap scan report for ec2-34-218-62-116.us-west-2.compute.amazonaws.com
+                        <font id="startnmap"></font> <br> Host is up (8.30s latency).<br> Service detection performed. Please report any incorrect results at https://nmap.org/submit/ Nmap done: 1 IP address (1 host up) scanned in 4.87 seconds
+                        <div id="progress">
+                            <div class="progress-value"></div>
+                        </div>
+                    </p>
+    </div>
+    <script>
+        globalThis.time = 0;
+
+        window.addEventListener('click', function() {
+
+            var audio = document.getElementById("myAudio");
+            audio.play()
+        });
+
+        function timing() {
+            if (time == 2) {
+                document.getElementById('line2').style.display = 'block';
+            } else if (time == 5) {
+
+                document.getElementById('code2').style.display = 'block';
+                document.getElementById('progress').style.display = 'flex';
+            } else if (time == 7) {
+                document.getElementById('main').style.display = 'none';
+                document.getElementById('animation').style.display = 'block';
+            } else if (time == 10) {
+                Animation()
+            } else if (time == 14) {
+                document.getElementById('animation').style.display = 'none';
+                var audio = document.getElementById("myAudio");
+                audio.muted = true;
+                document.getElementById("myAudio").autoplay = false;
+                document.body.style.background = "#000";
+                document.getElementById('table').style.display = 'block';
+            } else {
+
+            }
+            time++;
+        }
+        setInterval(timing, 1000);
+
+        function Animation() {
+            hacker = document.getElementById('animation');
+            const s = window.screen;
+            const w = (hacker.width = s.width);
+            const h = (hacker.height = (s.height - 150));
+            const ctx = hacker.getContext("2d");
+            const p = Array(Math.floor(w / 10) + 1).fill(0);
+            const random = (items) => items[Math.floor(Math.random() * items.length)];
+            const hex = "0123456789ABCDEFG".split("");
+
+            setInterval(() => {
+                ctx.fillStyle = "rgba(0, 0, 0, .01)";
+                ctx.fillRect(0, 0, w, h);
+                ctx.fillStyle = "lime";
+                p.map((v, i) => {
+                    ctx.fillText(random(hex), i * 10, v);
+                    p[i] = v >= h || v > 50 + 10000 * Math.random() ? 0 : v + 10;
+                });
+
+            }, 1000 / 30);
+        }
+        i = 0;
+        var txt = 'netcat hacking.cpp';
+        speed = 50;
+        window.onload = function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("line1").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                document.getElementById('code').style.display = 'block';
+                document.getElementsByClassName('progress')[0].style.display = 'flex';
+            }
+        };
+    </script>
+    <script>
+        function getIP(json) {
+
+            var ipad = json.ip;
+            document.getElementById("nmap").innerHTML = ipad;
+            document.getElementById("startnmap").innerHTML = ipad;
+            link = "https://ipapi.co/" + ipad + "/json/"
+            $.getJSON(link, function(data) {
+                function androidV(ua) {
+                    ua = (ua || navigator.userAgent).toLowerCase();
+                    var match = ua.match(/android\s([0-9\.]*)/i);
+                    return match ? match[1] : undefined;
+                };
+                document.getElementById("table").innerHTML = '<tr><th>About</th><th>Information</th></tr><tr><td>Android Version</td><td>' + androidV() + '</td><tr><td>IP Adress</td><td>' + data.ip + ' (It may vary depending on your network...)</td></tr><tr><td>Country</td><td>' + data.country_name + '</td></tr><tr><td>Region</td><td>' + data.region + '</td></tr><tr><td>City</td><td>' + data.city + ' (It may be not exact because of ISP Provider Server location...)</td></tr><tr><td>Country Capital</td><td>' + data.country_capital + '</td></tr><tr><td>Postal Code</td><td>' + data.postal + '</td></tr><tr><td>Latitude</td><td>' + data.latitude + '</td></tr><tr><td>Longitude</td><td>' + data.longitude + '</td></tr><tr><td>TimeZone</td><td>' + data.timezone + '</td></tr><tr><td>Phone Code</td><td>' + data.country_calling_code + '</td></tr><tr><td>Currency</td><td>' + data.currency_name + '</td></tr><tr><td>ISP</td><td>' + data.org + '</td></tr><br><br><font style="font-size:20px;">Note :- This information is yours not any random....This is done using IP Address tracking API...';
+            });
+        }
+    </script>
+    <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+    </body>
+
+</html>
